@@ -27,8 +27,13 @@ class Boleto(models.Model):
         return f"{self.title} - {self.value} ({self.category})"
     
     def clean(self):
+        errors = {}
+        
         if self.value < 0:
-            raise ValidationError({'value': "Valor inválido, indique um valor positivo."})
+            errors['value'] = ({'value': "Valor inválido, indique um valor positivo."})
+        
+        if self.title and len(self.title) <= 3:
+            errors['title'] = "O título deve ter pelo menos 3 caracteres."
         
     def save(self, *args, **kwargs):
         self.full_clean()  
