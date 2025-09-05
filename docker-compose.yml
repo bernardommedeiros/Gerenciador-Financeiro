@@ -1,0 +1,27 @@
+services:
+  finances:
+    container_name: finances
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src/finances:/src/finances
+      - ./data/web/static:/data/web/static
+      - ./data/web/media:/data/web/media
+    env_file:
+      - ./.env
+    depends_on:
+      - psql
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+  psql:
+    container_name: finances_db
+    image: postgres:15.2-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    env_file:
+      - ./.env
