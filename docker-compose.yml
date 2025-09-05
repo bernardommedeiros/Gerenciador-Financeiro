@@ -14,11 +14,11 @@ services:
       - ./.env
     depends_on:
       - psql
-    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    command: ["bash", "/scripts/commands.sh"]
 
   psql:
     container_name: finances_db
-    image: postgres:15.2-alpine
+    image: postgres:15.2
     ports:
       - "5432:5432"
     volumes:

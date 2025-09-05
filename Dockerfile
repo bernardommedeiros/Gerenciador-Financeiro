@@ -1,5 +1,5 @@
 
-FROM python:3.11.3-alpine3.18
+FROM python:3.11.3-slim-bullseye
 LABEL mantainer="bernardo181105@gmail.com"
 
 # Impede o Python de gravar arquivos de bytecode (.pyc) no disco. 1 = Não, 0 = Sim
@@ -29,7 +29,9 @@ RUN python -m venv /venv && \
   chown -R duser:duser /data/web/media && \
   chmod -R 755 /data/web/static && \
   chmod -R 755 /data/web/media && \
-  chmod -R +x /scripts
+  chmod +x /scripts/commands.sh && \
+  apt-get update && \
+  apt-get install -y bash postgresql-client
 
 
 
@@ -39,4 +41,4 @@ ENV PATH="/scripts:/venv/bin:$PATH"
 USER duser
 
 # Executa o arquivo scripts/commands.sh
-CMD ["commands.sh"]
+CMD ["bash", "/scripts/commands.sh"]
