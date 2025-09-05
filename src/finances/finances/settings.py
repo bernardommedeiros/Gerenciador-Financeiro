@@ -27,7 +27,12 @@ SECRET_KEY = "django-insecure-2h3leehqoe@$l1!j6x1l0kxpz#&kr@&2_7y_uw(x_jg@#b)g9-
 # busca variaveis de ambiente
 DEBUG = bool(int(os.getenv("DEBUG", 0)))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.githubpreview.dev', 
+    '0.0.0.0', 
+]
 
 
 # Application definition
@@ -39,7 +44,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "personal_finance",
+    'widget_tweaks', 
 ]
+
+AUTH_USER_MODEL = 'personal_finance.User'
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

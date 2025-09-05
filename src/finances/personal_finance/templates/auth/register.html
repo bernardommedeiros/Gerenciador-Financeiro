@@ -1,0 +1,59 @@
+{% extends 'personal_finance/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<main class="section">
+  <div class="container" style="max-width: 500px;">
+    <div class="box">
+      
+      <section class="mb-5 has-text-centered">
+        <h2 class="title is-3 has-text-centered"> Registre-se </h2>
+        <p class="subtitle is-6 has-text-grey mt-3">Crie sua conta para organizar-se financeiramente</p>
+      </section>
+
+      <form method="POST" class="is-fullwidth">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+          <div class="notification is-danger">
+            {{ form.non_field_errors }}
+          </div>
+        {% endif %}
+
+        {% for field in form %}
+          <div class="field">
+            <label class="label" for="{{ field.id_for_label }}">
+              {% if field.name == 'username' %}Nome de Usuário
+              {% elif field.name == 'email' %}Seu melhor email
+              {% elif field.name == 'password1' %}Sua melhor senha
+              {% elif field.name == 'password2' %}Confirme sua senha
+              {% else %}{{ field.label }}
+              {% endif %}
+            </label>
+
+            <div class="control">
+              {{ field|add_class:"input" }}
+            </div>
+
+            {% if field.errors %}
+              <p class="help is-danger">{{ field.errors|striptags }}</p>
+            {% endif %}
+          </div>
+        {% endfor %}
+
+        <div class="field mt-4">
+          <div class="control">
+            <button type="submit" class="button is-link is-fullwidth is-medium">
+              Confirmar
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <p class="has-text-centered mt-4">
+        Já tem conta? 
+        <a href="{% url 'login' %}" class="has-text-link">Entrar</a>
+      </p>
+    </div>
+  </div>
+</main>
+{% endblock %}

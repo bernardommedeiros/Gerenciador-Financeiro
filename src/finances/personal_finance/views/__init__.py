@@ -1,0 +1,1 @@
+from .auth import register_view, login_view

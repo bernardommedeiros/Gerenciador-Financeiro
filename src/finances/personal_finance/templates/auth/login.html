@@ -1,0 +1,50 @@
+{% extends "personal_finance/base.html" %}
+
+{% block content %}
+<section class="section">
+  <div class="container" style="max-width: 400px;">
+    <div class="box">
+      <h1 class="title is-3 has-text-centered mb-4">Login</h1>
+      <form method="post">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+          <div class="notification is-danger">
+            {{ form.non_field_errors }}
+          </div>
+        {% endif %}
+
+        <div class="field">
+          <label class="label" for="id_username">Usuário</label>
+          <div class="control">
+            <input class="input" type="text" name="username" id="id_username" required>
+          </div>
+          {% if form.username.errors %}
+            <p class="help is-danger">{{ form.username.errors.0 }}</p>
+          {% endif %}
+        </div>
+
+        <div class="field">
+          <label class="label" for="id_password">Senha</label>
+          <div class="control">
+            <input class="input" type="password" name="password" id="id_password" required>
+          </div>
+          {% if form.password.errors %}
+            <p class="help is-danger">{{ form.password.errors.0 }}</p>
+          {% endif %}
+        </div>
+
+        <div class="field mt-4">
+          <div class="control">
+            <button class="button is-link is-fullwidth">Entrar</button>
+          </div>
+        </div>
+
+        <p class="has-text-centered mt-4">
+          Ainda não tem conta?
+          <a href="{% url 'register' %}">Registre-se aqui</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
