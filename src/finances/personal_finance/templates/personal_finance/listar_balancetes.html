@@ -3,7 +3,7 @@
 
 <section class="section">
   <div class="container">
-    <h1 class="title is-2 has-text-centered">Gerenciador Financeiro</h1>
+    <h1 class="title is-2 has-text-centered has-text-weight-semibold">Gerenciador Financeiro</h1>
 
     {% if user.is_authenticated %}
   <p class="mt-4 ml-4 is-size-6 has-text-weight-medium has-text-centered">
@@ -27,6 +27,7 @@
       <div class="columns is-multiline">
         {% for item in balancetes %}
           <div class="column is-4">
+            <a href="{% url 'boleto_listar' item.id %}">
               <div class="card has-shadow">
                 <div class="card-content">
                   <p class="title is-4 has-text-link">{{ item.title }}</p>
