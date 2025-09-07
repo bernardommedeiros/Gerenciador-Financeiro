@@ -1,0 +1,15 @@
+{% extends 'personal_finance/base.html' %}
+{% block content %}
+<h2 class="title is-3">Novo Balancete</h2>
+<form method="post">
+  {% csrf_token %}
+  <label class="label">Nome:</label>
+  <input class="input" type="text" name="title" required>
+
+  <label class="label mt-4">Descrição:</label>
+  <textarea class="textarea" name="description"></textarea>
+
+  <button class="button is-primary mt-4" type="submit">Criar</button>
+</form>
+
+{% endblock %}

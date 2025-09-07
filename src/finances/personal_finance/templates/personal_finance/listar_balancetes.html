@@ -1,0 +1,51 @@
+{% extends 'personal_finance/base.html' %}
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <h1 class="title is-2 has-text-centered">Gerenciador Financeiro</h1>
+
+    {% if user.is_authenticated %}
+  <p class="mt-4 ml-4 is-size-6 has-text-weight-medium has-text-centered">
+    Olá, {{ user.username }}! verifique seus balancetes abaixo:
+    
+  </p>
+{% else %}
+  <div class="mt-4 ml-4">
+    <a href="{% url 'login' %}" class="button is-link">Login</a>
+  </div>
+{% endif %}
+
+
+    <div class="has-text-centered mt-6 mb-5">
+      <a class="button is-medium is-link" href="{% url 'balancete_criar' %}">
+        + Novo Balancete
+      </a>
+    </div>
+
+    {% if balancetes %}
+      <div class="columns is-multiline">
+        {% for item in balancetes %}
+          <div class="column is-4">
+              <div class="card has-shadow">
+                <div class="card-content">
+                  <p class="title is-4 has-text-link">{{ item.title }}</p>
+                  <p class="subtitle is-6 has-text-grey">
+                    Criado em {{ item.date|date:"d/m/Y" }}
+                  </p>
+                  <div class="content">
+                    {{ item.description|linebreaksbr }}
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="has-text-centered mt-5">Nenhum balancete cadastrado.</p>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

@@ -16,7 +16,7 @@ class Balancete(models.Model):
     def __str__(self):
         return self.title
     
-     class Meta:
+    class Meta:
         ordering = ['-date']
 
     def clean(self):
