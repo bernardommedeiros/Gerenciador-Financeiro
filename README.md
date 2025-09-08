@@ -43,7 +43,6 @@ Antes de tudo, certifique-se de ter instalado:
 ### 1. Clonar o Repositório
 ```bash
 git clone https://github.com/seu-usuario/gerenciador-financeiro.git
-cd gerenciador-financeiro
 ```
 
 
@@ -61,3 +60,24 @@ cd gerenciador-financeiro
 ```bash
   http://localhost:8000
 ```
+## 📚 Organização do Projeto
+
+- `src/finances/personal_finance/models/` — Modelos de dados (Balancete, Boleto, etc)
+- `src/finances/personal_finance/views/` — Views e lógica de apresentação
+- `src/finances/personal_finance/services/` — Serviços e regras de negócio
+- `src/finances/personal_finance/templates/` — Templates HTML
+- `src/finances/personal_finance/urls.py` — Rotas da aplicação
+
+---
+
+## 🤝 Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests.
+
+---
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT.
+
+---
