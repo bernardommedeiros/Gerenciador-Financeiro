@@ -6,11 +6,11 @@ from .views.boleto import BoletoListView, BoletoCreateView
 
 
 urlpatterns = [
-    path('login/', login_view, name='login'),
+    path('', login_view, name='login'),
     path('register/', register_view, name='register'),
     
     path('balancetes/novo/', BalanceteCreateView.as_view(), name='balancete_criar'),
-    path('', BalanceteListView.as_view(), name='listar_balancetes'),
+    path('/home/', BalanceteListView.as_view(), name='listar_balancetes'),
     path('balancete/<int:balancete_id>/boletos/', BoletoListView.as_view(), name='boleto_listar'),
     path('balancete/<int:balancete_id>/boletos/novo/', BoletoCreateView.as_view(), name='boleto_criar')
 ]
