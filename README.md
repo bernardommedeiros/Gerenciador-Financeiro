@@ -1,6 +1,6 @@
 # 💰 Gerenciador Financeiro
 
-Sistema que possibilita ao usuário criar **balancetes**, associar **despesas** e **faturamentos**, com o objetivo de melhorar a **organização financeira pessoal** ou empresarial.
+Sistema que possibilita ao usuário criar **balancetes**, associar **despesas** e **faturamentos**, com o objetivo de melhorar a **organização financeira** pessoal ou empresarial.
 
 ---
 
@@ -42,7 +42,7 @@ Antes de tudo, certifique-se de ter instalado:
 
 ### 1. Clonar o Repositório
 ```bash
-git clone https://github.com/seu-usuario/gerenciador-financeiro.git
+git clone https://github.com/bernardommedeiros/gerenciador-financeiro.git
 ```
 
 
