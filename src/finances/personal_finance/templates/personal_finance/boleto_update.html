@@ -1,0 +1,56 @@
+{% extends 'personal_finance/base.html' %}
+
+{% block title %}Editar Boleto{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h2 class="title is-3">Editar Boleto</h2>
+    <form method="post" enctype="multipart/form-data" class="box">
+      {% csrf_token %}
+      <div class="field">
+        <label class="label">Título</label>
+        <div class="control">
+          <input class="input" type="text" name="title" value="{{ boleto.title }}" required>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Valor</label>
+        <div class="control">
+          <input class="input" type="number" step="0.01" name="value" value="{{ boleto.value }}" required>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Categoria</label>
+        <div class="control">
+          <div class="select">
+            <select name="category" required>
+              <option value="Faturamento" {% if boleto.category == "Faturamento" %}selected{% endif %}>Faturamento</option>
+              <option value="Despesa" {% if boleto.category == "Despesa" %}selected{% endif %}>Despesa</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Imagem do Boleto</label>
+        <div class="control">
+          <input class="input" type="file" name="boleto_img">
+        </div>
+        {% if boleto.boleto_img %}
+          <figure class="image is-128x128 mt-2">
+            <img src="{{ boleto.boleto_img.url }}" alt="Imagem atual do boleto">
+          </figure>
+        {% endif %}
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link" type="submit">Salvar</button>
+        </div>
+        <div class="control">
+          <a class="button is-light" href="{% url 'boleto_listar' boleto.balancete.id %}">Cancelar</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

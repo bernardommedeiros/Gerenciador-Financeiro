@@ -45,3 +45,14 @@ class BoletoDeleteView(LoginRequiredMixin, View):
         balancete_id = boleto.balancete.id
         service.boleto_delete(boleto_id)
         return redirect('boleto_listar', balancete_id=balancete_id)
+    
+class BoletoUpdateView(LoginRequiredMixin, View):
+    def get(self, request, boleto_id):
+        boleto = get_object_or_404(service.listar_boletos(), id=boleto_id)
+        return render(request, 'personal_finance/boleto_update.html', {
+            'boleto': boleto
+        })
+
+    def post(self, request, boleto_id):
+        boleto = service.boleto_update(boleto_id, request.POST, request.FILES)
+        return redirect('boleto_listar', balancete_id=boleto.balancete.id)

@@ -33,8 +33,17 @@ def calcular_saldo(balancete_id=None):
         'despesa': despesa
     }
     
-    
 def boleto_delete(boleto_id):
     boleto = Boleto.objects.get(id=boleto_id)
     boleto.delete()
     return True
+
+def boleto_update(boleto_id, data, files):
+    boleto = Boleto.objects.get(id=boleto_id)
+    boleto.title = data.get('title', boleto.title)
+    boleto.value = data.get('value', boleto.value)
+    boleto.category = data.get('category', boleto.category)
+    if files and 'boleto_img' in files:
+        boleto.boleto_img = files.get('boleto_img')
+    boleto.save()
+    return boleto
