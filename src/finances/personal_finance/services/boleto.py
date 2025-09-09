@@ -32,3 +32,9 @@ def calcular_saldo(balancete_id=None):
         'faturamento': faturamento,
         'despesa': despesa
     }
+    
+    
+def boleto_delete(boleto_id):
+    boleto = Boleto.objects.get(id=boleto_id)
+    boleto.delete()
+    return True

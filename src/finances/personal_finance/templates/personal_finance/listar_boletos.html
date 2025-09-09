@@ -43,7 +43,19 @@
           <div class="column is-6">
             <div class="card">
               <div class="card-content">
-                <p class="title is-5">{{ item.title }}</p>
+                <div class="is-flex is-justify-content-space-between is-align-items-center mb-2">
+                  <p class="title is-5">{{ item.title }}</p>
+                  <form method="post" action="{% url 'boleto_delete' item.id %}" style="margin-left: 1rem;">
+                      {% csrf_token %}
+                      <button class="button is-danger is-light is-small" type="submit" title="Deletar">
+                        <span class="icon is-small">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                          </svg>
+                        </span>
+                    </button>
+                  </form>
+                </div>
+
                 <p class="subtitle is-6">
                   {{ item.date }} - R$ {{ item.value }} ({{ item.category }})
                 </p>

@@ -38,3 +38,10 @@ class BoletoListView(LoginRequiredMixin, ListView):
             'despesa': dados['despesa'],
             'balancete': balancete,
         })
+    
+class BoletoDeleteView(LoginRequiredMixin, View):
+    def post(self, request, boleto_id):
+        boleto = get_object_or_404(service.listar_boletos(), id=boleto_id)
+        balancete_id = boleto.balancete.id
+        service.boleto_delete(boleto_id)
+        return redirect('boleto_listar', balancete_id=balancete_id)
