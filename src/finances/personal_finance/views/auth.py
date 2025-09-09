@@ -8,7 +8,7 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('listar_balancetes') 
+            return redirect('balancetes_listar') 
         else:
             print(form.errors)  
     else:
@@ -21,7 +21,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('listar_balancetes')
+            return redirect('balancetes_listar')
     else:
         form = UserLoginForm()
     return render(request, 'auth/login.html', {'form': form})

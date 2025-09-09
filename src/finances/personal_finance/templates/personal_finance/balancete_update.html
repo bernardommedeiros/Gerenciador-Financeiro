@@ -1,0 +1,36 @@
+{% extends 'personal_finance/base.html' %}
+
+{% block title %}Editar Balancete{% endblock %}
+
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <h2 class="title is-3">Editar Balancete</h2>
+    <form method="post" enctype="multipart/form-data" class="box">
+      {% csrf_token %}
+      <div class="field">
+        <label class="label">Título</label>
+        <div class="control">
+          <input class="input" type="text" name="title" value="{{ balancete.title }}" required>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Descrição</label>
+        <div class="control">
+          <textarea class="textarea" name="description" required>{{ balancete.description }}</textarea>
+        </div>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link" type="submit">Salvar</button>
+        </div>
+        <div class="control">
+          <a class="button is-light" href="{% url 'balancetes_listar' %}">Cancelar</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+{% endblock %}
